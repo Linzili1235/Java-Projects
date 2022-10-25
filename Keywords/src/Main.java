@@ -5,26 +5,62 @@ public class Main {
         int in2 = 5;
 
         boolean gameOver = true;
-        int score = 900;
+        int score = 800;
         int levelCompleted = 5;
         int bonus = 100;
 
-//        if (score < 5000){
-//            System.out.println("Your score was less than 5000");
-//        }
-//        else if (score < 1000){
-//            System.out.println("Your score was less than 1000");
-//        }
-//        else{
-//            System.out.println("Got here");
-//        }
-//    }
-        //initiate finalscore before code block if you want to have it afterwards®
-        int finalScore = 0;
-        if (gameOver == true) {
-            finalScore = score + (levelCompleted * bonus);
-            System.out.println("your final score was " + finalScore);
-        }
-        System.out.println(finalScore);
+        int highScore =   calculateScore(gameOver,score,5,100);
+        System.out.println("your final score was " + highScore);
+
+        int lowScore = calculateScore(gameOver,score,8,200);
+        System.out.println("your final score was " + lowScore);
+
+
+
+        int highScorePosition = calculateHighScorePostiion(1500);
+        displayHighScorePosition("Tim",highScorePosition);
+
+        highScorePosition = calculateHighScorePostiion(900);
+        displayHighScorePosition("Bob",highScorePosition);
+
+
     }
+    public static void displayHighScorePosition(String playerName,
+                                                int highScorePosition){
+        System.out.println(playerName + " managed to get into position "
+        + highScorePosition + " on the high score table");
+
+    }
+    public static int calculateHighScorePostiion(int playerScore){
+//        if (playerScore > 1000){
+//            return 1;
+//        }
+//        else if (playerScore > 500){
+//            return 2;
+//        }
+//        return 0;
+        int position = 4; //assuming position 4 will be returned
+        if (playerScore > 1000){
+            position = 1;
+        }
+        else if (playerScore > 500){
+            position =  2;
+        }
+        return position; //bc we want less return statement
+    }
+    public static int calculateScore(boolean gameOver,
+                                      int score,
+                                      int levelCompleted,
+                                      int bonus){
+
+        if (gameOver) {
+            int finalScore = score + (levelCompleted * bonus);
+            finalScore += 100;
+            return finalScore;
+        }
+        return -1;
+
+    }
+
+    
 }
